@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Distribution Charts – Student Lifestyle</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="app-body">
+  <div class="page-shell">
+    <div class="card card-large">
+      <div class="badge badge-small">Distribution Explorer</div>
+      <h1 class="page-title">Distribution Charts</h1>
+      <p class="subtitle">
+        Dive into the distributions of study hours, sleep, social time, activity,
+        GPA and stress for both generations.
+      </p>
+
+      <div class="tab-bar">
+        <button class="tab-button active" data-target="overall">Overall</button>
+        <button class="tab-button" data-target="genz">Gen Z Only</button>
+        <button class="tab-button" data-target="millennials">Millennials Only</button>
+        <button class="tab-button" data-target="stress">Stress-Focused</button>
+
+        <a href="index.html" class="btn btn-outline btn-small">
+          ← Back to Home
+        </a>
+      </div>
+    </div>
+
+    <div class="sections-wrapper">
+      <!-- ================= OVERALL DISTRIBUTIONS ================= -->
+      <section id="overall" class="chart-section visible">
+        <h2 class="section-title">Overall Distributions</h2>
+        <p class="section-caption">
+          Histograms and density-style barcharts for the full dataset (Gen Z + Millennials).
+        </p>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3 class="chart-title">Distribution of Study Hours</h3>
+            <div id="dist_overall_study" class="chart-placeholder"></div>
+          </div>
+
+          <div class="chart-card">
+            <h3 class="chart-title">Distribution of Sleep Hours</h3>
+            <div id="dist_overall_sleep" class="chart-placeholder"></div>
+          </div>
+
+          <div class="chart-card">
+            <h3 class="chart-title">Distribution of Social Hours</h3>
+            <div id="dist_overall_social" class="chart-placeholder"></div>
+          </div>
+
+          <div class="chart-card">
+            <h3 class="chart-title">Distribution of Physical Activity</h3>
+            <div id="dist_overall_activity" class="chart-placeholder"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= GEN Z ONLY ================= -->
+      <section id="genz" class="chart-section">
+        <h2 class="section-title">Gen Z Distributions</h2>
+        <p class="section-caption">
+          Focused view of distributions using only Gen Z records.
+        </p>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3 class="chart-title">Study Hours (Gen Z)</h3>
+            <div id="dist_genz_study" class="chart-placeholder"></div>
+          </div>
+
+          <div class="chart-card">
+            <h3 class="chart-title">Sleep Hours (Gen Z)</h3>
+            <div id="dist_genz_sleep" class="chart-placeholder"></div>
+          </div>
+
+          <div class="chart-card">
+            <h3 class="chart-title">GPA (Gen Z)</h3>
+            <div id="dist_genz_gpa" class="chart-placeholder"></div>
+          </div>
+        </div>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3 class="chart-title">Study vs GPA (Gen Z – Scatter)</h3>
+            <div id="dist_genz_scatter" class="chart-placeholder"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= MILLENNIALS ONLY ================= -->
+      <section id="millennials" class="chart-section">
+        <h2 class="section-title">Millennials Distributions</h2>
+        <p class="section-caption">
+          The same distributions but filtered to Millennials only.
+        </p>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3 class="chart-title">Study Hours (Millennials)</h3>
+            <div id="dist_mill_study" class="chart-placeholder"></div>
+          </div>
+
+          <div class="chart-card">
+            <h3 class="chart-title">Sleep Hours (Millennials)</h3>
+            <div id="dist_mill_sleep" class="chart-placeholder"></div>
+          </div>
+
+          <div class="chart-card">
+            <h3 class="chart-title">GPA (Millennials)</h3>
+            <div id="dist_mill_gpa" class="chart-placeholder"></div>
+          </div>
+        </div>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3 class="chart-title">Study vs GPA (Millennials – Scatter)</h3>
+            <div id="dist_mill_scatter" class="chart-placeholder"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= STRESS-FOCUSED ================= -->
+      <section id="stress" class="chart-section">
+        <h2 class="section-title">Stress-Focused Distributions</h2>
+        <p class="section-caption">
+          How stress levels spread across the dataset, and how they relate to
+          other variables.
+        </p>
+
+        <div class="chart-grid">
+          <!-- PIE -->
+          <div class="chart-card">
+            <h3 class="chart-title">Stress Level Distribution (Pie)</h3>
+            <div id="dist_stress_pie" class="chart-placeholder"></div>
+          </div>
+
+          <!-- HEATMAP -->
+          <div class="chart-card">
+            <h3 class="chart-title">Study Hours × Stress (Heatmap)</h3>
+            <div id="dist_study_by_stress_heat" class="chart-placeholder"></div>
+          </div>
+
+          <!-- STACKED AREA -->
+          <div class="chart-card">
+            <h3 class="chart-title">Sleep Hours × Generation (Stacked Area)</h3>
+            <div id="dist_sleep_by_stress_stack" class="chart-placeholder"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="page-footer">
+      <span>Dataset: combined_student_lifestyle_36000.csv</span>
+      <span class="dot">•</span>
+      <span>Distribution explorer powered by D3.js</span>
+    </footer>
+  </div>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <!-- Tab switcher -->
+  <script>
+    document.querySelectorAll(".tab-button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.target;
+
+        document
+          .querySelectorAll(".tab-button")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        document.querySelectorAll(".chart-section").forEach((sec) => {
+          sec.classList.toggle("visible", sec.id === target);
+        });
+      });
+    });
+  </script>
+
+  <!-- D3 charts -->
+  <script src="js/distribution.js"></script>
+</body>
+</html>

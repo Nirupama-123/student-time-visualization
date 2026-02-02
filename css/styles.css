@@ -1,0 +1,1015 @@
+/* ===== Global layout ===== */
+
+
+
+*,
+
+*::before,
+
+*::after {
+
+  box-sizing: border-box;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+
+
+/* ---------- Home page shell ---------- */
+
+
+
+.dark-body {
+
+  min-height: 100vh;
+
+  margin: 0;
+
+  font-family: "Poppins", sans-serif;
+
+  color: #f4f0ff;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 40px 16px;
+
+  background: radial-gradient(circle at top, #272143 0, #0a0914 40%, #05030b 100%);
+
+  overflow-x: hidden;
+
+}
+
+
+
+/* subtle fade at the bottom to keep focus on the card */
+
+.dark-body::after {
+
+  content: "";
+
+  position: fixed;
+
+  inset: auto 0 0 0;
+
+  height: 38%;
+
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.75));
+
+  pointer-events: none;
+
+}
+
+
+
+.homepage-wrapper {
+
+  width: 100%;
+
+  max-width: 1200px;
+
+}
+
+
+
+/* ===== Main card (home) ===== */
+
+
+
+.homepage-card {
+
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  background: rgba(16, 16, 30, 0.9);
+
+  padding: 40px 50px 36px;
+
+  border-radius: 18px;
+
+  text-align: center;
+
+  box-shadow: 0 0 40px rgba(120, 60, 255, 0.4);
+
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+
+  animation: fadeIn 0.8s ease-in-out;
+
+  position: relative;
+
+}
+
+
+
+/* glassy neon glow around the card */
+
+.homepage-card::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: -40px;
+
+  border-radius: inherit;
+
+  background: radial-gradient(circle at top, rgba(126, 87, 255, 0.23), transparent 60%);
+
+  z-index: -1;
+
+}
+
+
+
+.homepage-card h1 {
+
+  font-size: 2.4rem;
+
+  letter-spacing: 0.04em;
+
+  margin-bottom: 10px;
+
+}
+
+
+
+.homepage-card h2 {
+
+  font-size: 1rem;
+
+  font-weight: 400;
+
+  color: #c5b9ff;
+
+  margin-bottom: 28px;
+
+}
+
+
+
+/* ===== Pill label ===== */
+
+
+
+.label-pill {
+
+  display: inline-block;
+
+  padding: 4px 12px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  color: #d3c9ff;
+
+  background: rgba(94, 44, 237, 0.2);
+
+  border: 1px solid rgba(161, 125, 255, 0.5);
+
+  margin-bottom: 12px;
+
+}
+
+
+
+/* ===== Navigation buttons (home) ===== */
+
+
+
+.nav-buttons {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 14px 20px;
+
+  justify-content: center;
+
+  margin-bottom: 26px;
+
+}
+
+
+
+.dash-btn {
+
+  position: relative;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 12px 24px;
+
+  border-radius: 999px;
+
+  border: none;
+
+  text-decoration: none;
+
+  font-size: 0.95rem;
+
+  font-weight: 500;
+
+  color: #fefbff;
+
+  cursor: pointer;
+
+  background: linear-gradient(135deg, #8647ff, #c74bff);
+
+  box-shadow: 0 8px 22px rgba(120, 60, 255, 0.65);
+
+  transition:
+
+    transform 0.22s ease,
+
+    box-shadow 0.22s ease,
+
+    background 0.22s ease,
+
+    color 0.22s ease;
+
+  overflow: hidden;
+
+}
+
+
+
+/* light shimmer overlay */
+
+.dash-btn::after {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.4), transparent 55%);
+
+  opacity: 0;
+
+  transition: opacity 0.25s ease;
+
+}
+
+
+
+/* icon styling */
+
+.dash-btn .material-icons {
+
+  font-size: 20px;
+
+  transition: transform 0.25s ease;
+
+}
+
+
+
+/* hover interactions */
+
+.dash-btn:hover {
+
+  background: linear-gradient(135deg, #9855ff, #dd63ff);
+
+  transform: translateY(-3px) scale(1.02);
+
+  box-shadow: 0 12px 28px rgba(140, 72, 255, 0.85);
+
+}
+
+
+
+.dash-btn:hover::after {
+
+  opacity: 0.25;
+
+}
+
+
+
+.dash-btn:hover .material-icons {
+
+  transform: translateY(-2px) scale(1.1);
+
+}
+
+
+
+/* active / pressed state */
+
+.dash-btn:active {
+
+  transform: translateY(-1px) scale(0.98);
+
+  box-shadow: 0 6px 18px rgba(120, 60, 255, 0.6);
+
+}
+
+
+
+/* wider primary button (Distribution) */
+
+.primary-wide {
+
+  padding-inline: 30px;
+
+}
+
+
+
+/* ===== Footer (home) ===== */
+
+
+
+.homepage-footer {
+
+  margin-top: 8px;
+
+  font-size: 0.8rem;
+
+  color: #a59be5;
+
+}
+
+
+
+/* ===== Animations & responsiveness ===== */
+
+
+
+@keyframes fadeIn {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+  }
+
+}
+
+
+
+@media (max-width: 768px) {
+
+  .homepage-card {
+
+    padding: 28px 20px 26px;
+
+  }
+
+
+
+  .homepage-card h1 {
+
+    font-size: 1.9rem;
+
+  }
+
+
+
+  .nav-buttons {
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+  }
+
+
+
+  .dash-btn {
+
+    justify-content: center;
+
+  }
+
+}
+
+
+
+/* ========================================================= */
+
+/* ========== Shared page shell for inner dashboards ======= */
+
+/* ========================================================= */
+
+
+
+.app-body {
+
+  margin: 0;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+
+    "Roboto", sans-serif;
+
+  background: radial-gradient(circle at top, #2b134c 0, #050014 45%, #010009 100%);
+
+  color: #f7f2ff;
+
+}
+
+
+
+.page-shell {
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  padding: 56px 16px 40px;
+
+}
+
+
+
+.card-large {
+
+  width: 100%;
+
+  max-width: 1040px;
+
+  padding: 32px 40px 28px;
+
+  border-radius: 32px;
+
+  background: radial-gradient(circle at top left, #2b134c, #090013 55%, #05000f);
+
+  box-shadow: 0 0 90px rgba(126, 87, 255, 0.55);
+
+  text-align: center;
+
+  margin-bottom: 32px;
+
+}
+
+
+
+.page-title {
+
+  font-size: 2.4rem;
+
+  letter-spacing: 0.03em;
+
+  margin: 16px 0 8px;
+
+}
+
+
+
+.badge-small {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 0.75rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.16em;
+
+  padding: 6px 14px;
+
+  border-radius: 999px;
+
+  background: rgba(188, 164, 255, 0.12);
+
+  color: #cbb7ff;
+
+  border: 1px solid rgba(188, 164, 255, 0.3);
+
+}
+
+
+
+.subtitle {
+
+  margin: 0;
+
+  margin-top: 4px;
+
+  font-size: 0.97rem;
+
+  color: #b7a9ff;
+
+}
+
+
+
+/* ---------- Tabs ---------- */
+
+
+
+.tab-bar {
+
+  margin-top: 24px;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  justify-content: center;
+
+  align-items: center;
+
+}
+
+
+
+.tab-button {
+
+  border: none;
+
+  outline: none;
+
+  padding: 10px 18px;
+
+  border-radius: 999px;
+
+  font-size: 0.9rem;
+
+  background: rgba(111, 66, 255, 0.18);
+
+  color: #e4daff;
+
+  cursor: pointer;
+
+  transition: background 0.18s ease, transform 0.15s ease, box-shadow 0.18s ease;
+
+}
+
+
+
+.tab-button:hover {
+
+  background: rgba(157, 93, 255, 0.45);
+
+  box-shadow: 0 0 20px rgba(160, 93, 255, 0.6);
+
+  transform: translateY(-1px);
+
+}
+
+
+
+.tab-button.active {
+
+  background: linear-gradient(135deg, #bb4bff, #7d3cff);
+
+  color: #fefbff;
+
+  box-shadow: 0 0 24px rgba(157, 93, 255, 0.9);
+
+}
+
+
+
+/* small button used for "Back to Home" */
+
+.btn-small {
+
+  padding: 8px 14px;
+
+  font-size: 0.8rem;
+
+}
+
+
+
+/* ========================================================= */
+
+/* =============== Sections & chart layout ================= */
+
+/* ========================================================= */
+
+
+
+.sections-wrapper {
+
+  width: 100%;
+
+  max-width: 1120px;
+
+  margin-top: 8px;
+
+  margin-bottom: 32px;
+
+}
+
+
+
+.chart-section {
+
+  display: none;
+
+  padding: 24px 4px 12px;
+
+}
+
+
+
+.chart-section.visible {
+
+  display: block;
+
+}
+
+
+
+.section-title {
+
+  font-size: 1.3rem;
+
+  margin: 0 0 6px;
+
+  color: #f5edff;
+
+}
+
+
+
+.section-caption {
+
+  margin: 0 0 18px;
+
+  color: #a59ad9;
+
+  font-size: 0.9rem;
+
+}
+
+
+
+.chart-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+
+  gap: 18px;
+
+}
+
+
+
+/* Base card: safe for ALL pages */
+
+.chart-card {
+
+  background: radial-gradient(circle at top left, #241042, #090013 60%);
+
+  border-radius: 20px;
+
+  padding: 16px 18px 14px;
+
+  border: 1px solid rgba(134, 103, 255, 0.44);
+
+  box-shadow: 0 0 26px rgba(56, 26, 135, 0.55);
+
+}
+
+
+
+/* Base placeholder (generic dashboards) */
+
+.chart-placeholder {
+
+  width: 100%;
+
+  min-height: 260px;   /* space reserved for D3 charts */
+
+  position: relative;
+
+}
+
+
+
+.chart-title {
+
+  font-size: 1rem;
+
+  margin: 0 0 4px;
+
+  color: #f6efff;
+
+}
+
+
+
+.chart-note {
+
+  margin: 0 0 10px;
+
+  font-size: 0.8rem;
+
+  color: #9b8fd7;
+
+}
+
+
+
+/* ---------- Footer (dashboards) ---------- */
+
+
+
+.page-footer {
+
+  font-size: 0.8rem;
+
+  color: #7c72c5;
+
+  display: flex;
+
+  gap: 6px;
+
+  align-items: center;
+
+  justify-content: center;
+
+  opacity: 0.85;
+
+}
+
+
+
+.page-footer .dot {
+
+  opacity: 0.6;
+
+}
+
+
+
+/* smooth scroll if you ever use #anchors */
+
+html {
+
+  scroll-behavior: smooth;
+
+}
+
+
+
+/* ========================================================= */
+
+/* ===== Scoped layout tweaks ONLY for Compare page ======== */
+
+/* ========================================================= */
+
+/* Make sure your compare.html has:
+
+   <body class="app-body compare-page">
+
+*/
+
+
+
+.compare-page .chart-card {
+
+  position: relative;
+
+  overflow: hidden;      /* keep chart fully inside rounded card */
+
+}
+
+
+
+.compare-page .chart-placeholder {
+
+  width: 100%;
+
+  height: 260px;         /* fixed drawing height for all Compare charts */
+
+  position: relative;
+
+}
+
+
+
+/* Any SVG drawn inside fills the available area */
+
+.compare-page .chart-placeholder svg {
+
+  display: block;
+
+  width: 100%;
+
+  height: 100%;
+
+}
+
+/* ========================================================= */
+
+/* =========== Compare page only layout overrides ========= */
+
+/* ========================================================= */
+
+/* Make sure compare.html has:
+
+   <body class="app-body compare-page">
+
+*/
+
+
+
+.compare-page .sections-wrapper {
+
+  max-width: 1120px;
+
+}
+
+
+
+/* Keep every chart safely inside the rounded cards */
+
+.compare-page .chart-card {
+
+  position: relative;
+
+  overflow: hidden;      /* no SVG spilling outside */
+
+}
+
+
+
+/* Give D3 a fixed drawing height so container & SVG match */
+
+.compare-page .chart-placeholder {
+
+  width: 100%;
+
+  height: 300px;         /* slightly taller so we can also fit legends */
+
+  position: relative;
+
+}
+
+
+
+/* Any SVG inside compare charts fills the placeholder area */
+
+.compare-page .chart-placeholder svg {
+
+  display: block;
+
+  width: 100%;
+
+  height: 100%;
+
+}
+
+
+
+/* Optional: a little extra breathing room between chart groups */
+
+.compare-page .chart-section {
+
+  padding-bottom: 24px;
+
+}
+
+
+
+/* If the bottom legends ever feel too tight, this keeps text crisp */
+
+.compare-page .gen-legend text {
+
+  paint-order: stroke;
+
+  stroke: rgba(5, 0, 15, 0.9);
+
+  stroke-width: 2;
+
+}
+
+
+
+/* --- Compact chart height only on Compare page --- */
+
+.compare-page .chart-placeholder {
+
+  height: 220px !important;   /* smaller fixed height for all compare charts */
+
+}
+
+
+
+/* ========================================================= */
+
+/* ====== COMPARE PAGE ONLY (Gen Z vs Millennials) ========= */
+
+/*  Body tag must have:  <body class="app-body compare-page"> */
+
+/* ========================================================= */
+
+
+
+.compare-page .sections-wrapper {
+
+  max-width: 1120px;
+
+}
+
+
+
+/* Make the cards a bit tighter so charts feel smaller */
+
+.compare-page .chart-card {
+
+  padding: 14px 16px 10px;
+
+}
+
+
+
+/* Shorter chart area so the whole chart fits in the card */
+
+.compare-page .chart-placeholder {
+
+  width: 100%;
+
+  height: 220px;      /* <- main knob if you still want smaller/bigger */
+
+  position: relative;
+
+}
+
+
+
+/* Any SVG inside compare charts should scale to fit the placeholder */
+
+.compare-page .chart-placeholder svg {
+
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+}
+
+
+
+/* Slightly smaller axis text so it feels less crowded */
+
+.compare-page .chart-card .tick text {
+
+  font-size: 10px;
+
+}
+
+
+
+/* Tooltip stays the same but scoping here in case */
+
+.viz-tooltip {
+
+  z-index: 9999;
+
+}
+
+.chart-legend text,
+.legend-label {
+    fill: #ffffff;        /* White legend text */
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    opacity: 0.9;
+}
