@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Compare Generations – Student Lifestyle</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="app-body compare-page">
+
+  <div class="page-shell">
+    <div class="card card-large">
+      <div class="badge badge-small">Gen Z vs Millennials</div>
+      <h1 class="page-title">Comparing Both Generations</h1>
+      <p class="subtitle">
+        Side-by-side view of how Gen Z and Millennials differ in study habits,
+        sleep, social time, activity, GPA and stress.
+      </p>
+
+      <div class="tab-bar">
+        <button class="tab-button active" data-target="key-metrics">
+          Key Metrics
+        </button>
+        <button class="tab-button" data-target="time-use">
+          Time Use
+        </button>
+        <button class="tab-button" data-target="stress-gpa">
+          Stress &amp; GPA
+        </button>
+        <button class="tab-button" data-target="correlations">
+          Correlations
+        </button>
+
+        <a href="index.html" class="btn btn-outline btn-small">
+          ← Back to Home
+        </a>
+      </div>
+    </div>
+
+    <div class="sections-wrapper">
+      <!-- KEY METRICS -->
+      <section id="key-metrics" class="chart-section visible">
+        <h2 class="section-title">Key Metrics Overview</h2>
+        <p class="section-caption">
+          High-level comparison of average hours and GPA for Gen Z versus Millennials.
+        </p>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3 class="chart-title">Average Study, Sleep &amp; Social Hours</h3>
+            <p class="chart-note">Clustered bars per generation for each metric.</p>
+            <div id="cmp_bar_core_hours_by_gen" class="chart-placeholder"></div>
+          </div>
+
+          <div class="chart-card">
+            <h3 class="chart-title">Average GPA by Generation</h3>
+            <div id="cmp_bar_gpa_by_gen" class="chart-placeholder"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIME USE -->
+      <section id="time-use" class="chart-section">
+        <h2 class="section-title">Time Use Patterns</h2>
+        <p class="section-caption">
+          How each generation allocates time across study, sleep, social and
+          physical activity.
+        </p>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3 class="chart-title">Stacked Time Breakdown by Generation</h3>
+            <div id="cmp_stacked_time_by_gen" class="chart-placeholder"></div>
+          </div>
+
+          <div class="chart-card">
+            <h3 class="chart-title">Study vs Social Hours (Gen Z vs Millennials)</h3>
+            <p class="chart-note">Grouped bars showing differences.</p>
+            <div id="cmp_grouped_study_social" class="chart-placeholder"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STRESS & GPA -->
+      <section id="stress-gpa" class="chart-section">
+        <h2 class="section-title">Stress &amp; GPA by Generation</h2>
+        <p class="section-caption">
+          Compare how stress levels are distributed and how GPA changes across stress
+          categories for each group.
+        </p>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3 class="chart-title">Stress Level Distribution (Stacked by Generation)</h3>
+            <div id="cmp_bar_stress_distribution" class="chart-placeholder"></div>
+          </div>
+
+          <div class="chart-card">
+            <h3 class="chart-title">GPA by Stress Level &amp; Generation</h3>
+            <p class="chart-note">Grouped bars by stress level and generation.</p>
+            <div id="cmp_gpa_by_stress_gen" class="chart-placeholder"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CORRELATIONS -->
+      <section id="correlations" class="chart-section">
+        <h2 class="section-title">Correlations</h2>
+        <p class="section-caption">
+          How relationships between variables differ by generation.
+        </p>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3 class="chart-title">Study vs Sleep (Colored by Generation)</h3>
+            <div id="cmp_scatter_study_sleep_gen" class="chart-placeholder"></div>
+          </div>
+
+          <div class="chart-card">
+            <h3 class="chart-title">Activity vs GPA (Colored by Generation)</h3>
+            <div id="cmp_scatter_activity_gpa_gen" class="chart-placeholder"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="page-footer">
+      <span>Dataset: combined_student_lifestyle_36000.csv (Gen Z + Millennials)</span>
+      <span class="dot">•</span>
+      <span>Comparison dashboard powered by D3.js</span>
+    </footer>
+  </div>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <script>
+    document.querySelectorAll(".tab-button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.target;
+
+        document
+          .querySelectorAll(".tab-button")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        document.querySelectorAll(".chart-section").forEach((sec) => {
+          sec.classList.toggle("visible", sec.id === target);
+        });
+      });
+    });
+  </script>
+
+  <script src="js/compare.js"></script>
+</body>
+</html>

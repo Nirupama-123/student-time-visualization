@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Millennials Dashboard – Student Lifestyle</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="app-body millennials-page">
+  <div class="page-shell">
+    <!-- Header card -->
+    <div class="card card-large">
+      <div class="badge badge-small">Millennials Dashboard</div>
+      <h1 class="page-title">Millennials Lifestyle Patterns</h1>
+      <p class="subtitle">
+        Explore how Millennials balance study, sleep, social time, physical activity,
+        GPA and stress levels.
+      </p>
+
+      <div class="tab-bar">
+        <button class="tab-button active" data-target="overview">Overview</button>
+        <button class="tab-button" data-target="bar-charts">Bar Charts</button>
+        <button class="tab-button" data-target="trends">Trends &amp; Distributions</button>
+        <button class="tab-button" data-target="stress-gpa">Stress &amp; GPA</button>
+
+        <a href="index.html" class="btn btn-outline btn-small">
+          ← Back to Home
+        </a>
+      </div>
+    </div>
+
+    <div class="sections-wrapper">
+      <!-- OVERVIEW -->
+      <section id="overview" class="chart-section visible">
+        <h2 class="section-title">Overview</h2>
+        <p class="section-caption">
+          High-level snapshot of average time spent studying, sleeping, socializing
+          and being active for Millennials.
+        </p>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3 class="chart-title">Average Daily Time Breakdown</h3>
+            <p class="chart-note">Average hours of Study vs Sleep vs Social vs Activity.</p>
+            <div id="mill_overview_time_breakdown" class="chart-placeholder"></div>
+          </div>
+
+          <div class="chart-card">
+            <h3 class="chart-title">Study vs Sleep Balance</h3>
+            <p class="chart-note">Scatter plot of Study_Hours vs Sleep_Hours.</p>
+            <div id="mill_overview_study_sleep" class="chart-placeholder"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BAR CHARTS -->
+      <section id="bar-charts" class="chart-section">
+        <h2 class="section-title">Bar Charts (Millennials)</h2>
+        <p class="section-caption">
+          Compare average hours and activity patterns grouped by stress levels.
+        </p>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3 class="chart-title">Average Study Hours by Stress Level</h3>
+            <div id="mill_bar_study_stress" class="chart-placeholder"></div>
+          </div>
+
+          <div class="chart-card">
+            <h3 class="chart-title">Average Social Hours by Stress Level</h3>
+            <div id="mill_bar_social_stress" class="chart-placeholder"></div>
+          </div>
+
+          <div class="chart-card">
+            <h3 class="chart-title">Stacked Bar: Time Distribution</h3>
+            <p class="chart-note">Study / Sleep / Social combined per stress level.</p>
+            <div id="mill_stacked_time_distribution" class="chart-placeholder"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRENDS & DISTRIBUTIONS -->
+      <section id="trends" class="chart-section">
+        <h2 class="section-title">Trends &amp; Distributions</h2>
+        <p class="section-caption">
+          Relationships and distributions across key lifestyle variables.
+        </p>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3 class="chart-title">Study vs Sleep Hours</h3>
+            <div id="mill_scatter_study_sleep" class="chart-placeholder"></div>
+          </div>
+
+          <div class="chart-card">
+            <h3 class="chart-title">Distribution of Sleep Hours</h3>
+            <div id="mill_hist_sleep" class="chart-placeholder"></div>
+          </div>
+
+          <div class="chart-card">
+            <h3 class="chart-title">Physical Activity vs GPA</h3>
+            <div id="mill_scatter_activity_gpa" class="chart-placeholder"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STRESS & GPA -->
+      <section id="stress-gpa" class="chart-section">
+        <h2 class="section-title">Stress &amp; GPA</h2>
+        <p class="section-caption">
+          How stress levels are distributed, and how they relate to academic performance
+          for Millennials.
+        </p>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3 class="chart-title">Stress Level Distribution</h3>
+            <div id="mill_donut_stress" class="chart-placeholder"></div>
+          </div>
+
+          <div class="chart-card">
+            <h3 class="chart-title">GPA by Stress Level</h3>
+            <div id="mill_box_gpa_stress" class="chart-placeholder"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="page-footer">
+      <span>Dataset: Millennials subset of combined_student_lifestyle_36000.csv</span>
+      <span class="dot">•</span>
+      <span>Interactive charts powered by D3.js</span>
+    </footer>
+  </div>
+
+  <!-- D3 library -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <!-- Tab switching -->
+  <script>
+    document.querySelectorAll(".tab-button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.target;
+
+        document.querySelectorAll(".tab-button")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        document.querySelectorAll(".chart-section").forEach((sec) => {
+          sec.classList.toggle("visible", sec.id === target);
+        });
+      });
+    });
+  </script>
+
+  <!-- Millennials charts -->
+  <script src="js/millennials.js"></script>
+</body>
+</html>
